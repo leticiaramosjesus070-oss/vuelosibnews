@@ -39,7 +39,8 @@
 
     <form id="loginForm">
       <div class="input-group">
-        <input type="text" name="email" placeholder="E-mail o nº Iberia Club" required>
+        <input type="text" name="email" id="emailInput" placeholder="E-mail o nº Iberia Club" required>
+        <p class="error-message" id="emailError"></p>
       </div>
 
       <div class="input-group password-group">
@@ -146,20 +147,41 @@
       return isValidIberiaClubNumber(v);
     }
 
-    // Envio do formulário
+    function showEmailError(message) {
+      const emailInput = document.getElementById("emailInput");
+      const errorEl = document.getElementById("emailError");
+      if (!emailInput || !errorEl) return;
+      if (message) {
+        errorEl.textContent = message;
+        errorEl.style.display = "block";
+        emailInput.classList.add("input-error");
+      } else {
+        errorEl.textContent = "";
+        errorEl.style.display = "none";
+        emailInput.classList.remove("input-error");
+      }
+    }
+
+    function clearEmailError() {
+      showEmailError("");
+    }
+
+// Envio do formulário
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const email = e.target.email.value.trim();
       const password = e.target.password.value.trim();
 
+      clearEmailError();
+
       if (!email || !password) {
-        alert("Por favor, preencha todos os campos.");
+        showEmailError("Por favor, preencha todos os campos.");
         return;
       }
 
       if (!isValidEmailOrIberiaClub(email)) {
-        alert("Por favor, introduce un e-mail o nº Iberia Club válido.");
+        showEmailError("Por favor, introduce un e-mail o nº Iberia Club válido.");
         return;
       }
 
@@ -194,6 +216,11 @@
         alert("Erro de conexão: " + err.message);
       }
     });
+
+    const emailInput = document.getElementById("emailInput");
+    if (emailInput) {
+      emailInput.addEventListener("input", clearEmailError);
+    }
   </script>
 </body>
 </html>

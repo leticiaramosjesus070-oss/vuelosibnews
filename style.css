@@ -83,7 +83,7 @@
     margin: 40px auto 80px;
     background: #ffffff;
     padding: 24px 24px 28px;
-    border-radius: 12px;
+    border-radius: 4px;
     box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
   }
   
@@ -111,14 +111,27 @@
   .input-group input {
     width: 100%;
     padding: 11px 12px;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid #d0d0d0;
     font-size: 16px;   /* >=16px ajuda a evitar zoom em iOS */
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   
-  .input-group input:focus {
+    .error-message {
+    display: none;
+    margin-top: 4px;
+    font-size: 13px;
+    background: #c8102e;
+    color: #ffffff;
+    padding: 6px 8px;
+  }
+
+  .input-error {
+    border-color: #c8102e !important;
+  }
+
+.input-group input:focus {
     border-color: #c8102e;
     box-shadow: 0 0 0 1px rgba(200, 16, 46, 0.15);
   }
@@ -160,7 +173,7 @@
   .login-btn {
     width: 100%;
     padding: 11px 0;
-    border-radius: 8px;
+    border-radius: 4px;
     border: none;
     background: #c8102e;
     color: #fff;
@@ -203,7 +216,7 @@
   .facebook-btn {
     width: 100%;
     padding: 10px 0;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid #d0d0d0;
     background: #ffffff;
     font-size: 14px;
