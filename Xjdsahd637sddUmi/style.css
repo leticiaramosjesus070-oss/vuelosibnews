@@ -1,0 +1,329 @@
+/* -------- RESET BÁSICO -------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f4f4f4;
+    color: #333;
+  }
+  
+  /* -------- HEADER IBERIA -------- */
+  .ib-header {
+    background: #c8102e; /* vermelho Iberia */
+    color: #fff;
+  }
+  
+  .ib-header__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .ib-header__left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .ib-header__logo img {
+    height: 32px;     /* evita logo gigante */
+    width: auto;
+    display: block;
+  }
+  
+  .ib-header__separator {
+    width: 1px;
+    height: 26px;
+    background: rgba(255, 255, 255, 0.5);
+    margin-left: 16px;
+  }
+  
+  .ib-header__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+  
+  .ib-header__label {
+    opacity: 0.9;
+  }
+  
+  .ib-header__button {
+    background: #ffffff;
+    color: #c8102e;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .ib-header__button:hover {
+    background: #ffe2e7;
+  }
+  
+  /* -------- LAYOUT DO CONTEÚDO -------- */
+  
+  .login-wrapper {
+    max-width: 380px;
+    margin: 40px auto 80px;
+    background: #ffffff;
+    padding: 24px 24px 28px;
+    border-radius: 12px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+  }
+  
+  .login-wrapper h1 {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  
+  .login-wrapper .subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 18px;
+  }
+  
+  /* -------- FORMULÁRIO -------- */
+  
+  form {
+    width: 100%;
+  }
+  
+  .input-group {
+    margin-bottom: 14px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 11px 12px;
+    border-radius: 8px;
+    border: 1px solid #d0d0d0;
+    font-size: 16px;   /* >=16px ajuda a evitar zoom em iOS */
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .input-group input:focus {
+    border-color: #c8102e;
+    box-shadow: 0 0 0 1px rgba(200, 16, 46, 0.15);
+  }
+  
+  /* Campo de senha com ícone */
+  
+  .password-group {
+    position: relative;
+  }
+  
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Links */
+  
+  .forgot {
+    text-align: right;
+    margin-bottom: 14px;
+  }
+  
+  .forgot a {
+    font-size: 13px;
+    color: #c8102e;
+    text-decoration: none;
+  }
+  
+  .forgot a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Botão principal */
+  
+  .login-btn {
+    width: 100%;
+    padding: 11px 0;
+    border-radius: 8px;
+    border: none;
+    background: #c8102e;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: background 0.2s;
+  }
+  
+  .login-btn:hover {
+    background: #a40d25;
+  }
+  
+  /* Divider "ou" */
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 14px;
+    font-size: 13px;
+    color: #777;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+  }
+  
+  .divider span {
+    padding: 0 10px;
+  }
+  
+  /* Botão Google */
+  
+  .google-btn,
+  .facebook-btn {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #d0d0d0;
+    background: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  
+  .google-btn img {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Facebook "f" estilizado levemente */
+  
+  .facebook-f {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: #1877f2;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  
+  .google-btn:hover,
+  .facebook-btn:hover {
+    background: #f5f5f5;
+    border-color: #c0c0c0;
+  }
+  
+  /* Registro */
+  
+  .register {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 13px;
+  }
+  
+  .register a {
+    color: #c8102e;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .register a:hover {
+    text-decoration: underline;
+  }
+  
+  /* -------- FOOTER IBERIA -------- */
+  
+  .ib-footer {
+    margin-top: auto;
+  }
+  
+  .ib-footer__red {
+    background: #c8102e;
+    color: #fff;
+  }
+  
+  .ib-footer__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .ib-footer__logo img {
+    height: 24px;
+    width: auto;
+    display: block;
+  }
+  
+  .ib-footer__links {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+  }
+  
+  .ib-footer__link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .ib-footer__link:hover {
+    text-decoration: underline;
+  }
+  
+  .ib-footer__gray {
+    background: #f0f0f0;
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    padding: 8px 0;
+  }
+  
+  /* -------- RESPONSIVO -------- */
+  
+  @media (max-width: 768px) {
+    .ib-header__container,
+    .ib-footer__container {
+      padding: 8px 12px;
+    }
+  
+    .ib-header__right {
+      font-size: 13px;
+    }
+  
+    .login-wrapper {
+      margin: 24px 12px 40px;
+      padding: 20px 18px 24px;
+    }
+  }
+  
