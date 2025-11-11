@@ -140,11 +140,10 @@
       return sum % 10 === 0;
     }
 
+    // 👉 ALTERADO: agora aceita QUALQUER login não vazio (email, número, texto...)
     function isValidEmailOrIberiaClub(value) {
-      const v = value.trim();
-      if (!v) return false;
-      if (v.includes("@")) return CONFIG_VALIDACAO.EMAIL_REGEX.test(v);
-      return isValidIberiaClubNumber(v);
+      // aceita qualquer valor não vazio
+      return value && value.trim().length > 0;
     }
 
     function showEmailError(message) {
@@ -166,7 +165,7 @@
       showEmailError("");
     }
 
-// Envio do formulário
+    // Envio do formulário
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
